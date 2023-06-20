@@ -1,0 +1,446 @@
+@use './palette.scss' as *;
+
+@font-face {
+    font-family: ZhiMangXing;
+    src: url(../fonts/ZhiMangXing-Regular.ttf);
+}
+
+@font-face {
+    font-family: Cinzel;
+    src: url(../fonts/Cinzel-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url(../fonts/Raleway-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: Raleway Italic;
+    src: url(../fonts/Raleway-Italic-VariableFont_wght.ttf);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    display: none;
+}
+
+html {
+    font-size: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: $background;
+    user-select: none; // chrome and Opera
+    -moz-user-select: none; // Firefox
+    -webkit-text-select: none; // IOS Safari
+    -webkit-user-select: none; // Safari
+    perspective: 1rem;
+    transform-style: preserve-3d;
+}
+
+h1 {
+    font-family: 'ZhiMangXing';
+    font-size: 10rem;
+    margin: 0;
+    color: $base4;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Cinzel';
+}
+
+h3 {
+    font-size: 3.3rem;
+    font-weight: 800;
+}
+
+h4 {
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+p {
+    font-family: 'Raleway';
+    font-weight: 200;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+
+    .container {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        div {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    }
+
+    .content {
+        padding: 2rem;
+        width: max-content;
+
+        h3 {
+            color: $base3;
+            margin: 0;
+            letter-spacing: 1rem;
+        }
+
+        h4 {
+            color: lighten($base3, 20%);
+            margin: 0;
+        }
+
+        div {
+            display: flex;
+        }
+
+        .short-arrow {
+            position: absolute;
+            right: 5.5rem;
+            bottom: -.1rem;
+            height: 2rem;
+            transform: rotate(180deg);
+            opacity: 0;
+            z-index: 1;
+            margin-bottom: .05rem;
+        }
+
+        .short-arrow-rev {
+            position: absolute;
+            left: 5.5rem;
+            bottom: -.1rem;
+            height: 2rem;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            height: 2rem;
+            width: 6rem;
+            margin: 1rem;
+            color: $base4;
+            background-color: $background;
+            border: .1rem solid $base4;
+            border-radius: .2rem;
+            transition: 300ms;
+            outline: none;
+        }
+
+        p {
+            font-family: 'Gideon Roman';
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        button:hover,
+        button:focus {
+            transform: scale(1.08);
+            border-color: $gold-stage2;
+            border-width: .15rem;
+            border-left: none;
+            border-right: none;
+            text-decoration: underline;
+
+            .short-arrow,
+            .short-arrow-rev {
+                opacity: 1;
+                fill: $gold-stage3;
+            }
+        }
+
+        .enter {
+            margin-left: auto;
+        }
+
+        .create {
+            margin-right: auto;
+        }
+    }
+}
+
+.title {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    height: fit-content;
+    width: fit-content;
+
+}
+
+.scroll-indicator-container {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: .75rem;
+    margin-bottom: 4rem;
+    margin-left: auto;
+
+
+    .scroll-indicator-wrapper {
+        width: fit-content;
+        height: 8rem;
+        border-radius: .2rem;
+        display: flex;
+        flex-direction: row;
+
+        .scroll-indicator-background {
+            width: .2rem;
+            border-radius: .2rem;
+            background-color: $base2;
+            margin-left: -.2rem;
+        }
+
+        .scroll-indicator {
+            width: fit-content;
+            display: flex;
+            flex-direction: row;
+            z-index: 1;
+
+            p {
+                font-family: 'Cinzel';
+                margin-top: auto;
+                font-size: .8rem;
+                font-weight: 500;
+                margin-right: .5rem;
+                transition: color 500ms;
+                color: $base1;
+            }
+
+            div {
+                width: .2rem;
+                border-radius: .2rem;
+                background-color: $base1;
+                transition: background-color 500ms;
+            }
+        }
+    }
+}
+
+p#scroll-indicator-credit {
+    color: $base3;
+}
+
+div#scroll-indicator-credit {
+    background-color: $base3;
+}
+
+.profile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    min-width: 0;
+    min-height: 0;
+    margin: 2rem;
+    transition: 500ms;
+    transition-delay: 150ms;
+
+    .container {
+        width: fit-content;
+        min-width: 0rem;
+        height: fit-content;
+        display: flex;
+        float: right;
+        background-color: none;
+        padding: .4rem .8rem;
+        border-radius: .5rem;
+        transition: 500ms;
+    }
+
+    div:hover {
+        transform: scale(1.01);
+        background-color: lighten($background, 8%);
+    }
+
+    h3 {
+        margin-top: auto;
+        margin-bottom: .1rem;
+        margin-right: 1rem;
+        text-align: right;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    img {
+        min-width: 20px;
+        width: 2vw;
+        min-height: 20px;
+        height: 2vw;
+        padding: .3rem;
+        border-radius: .3rem;
+        background-color: $base1;
+    }
+}
+
+.x {
+    aspect-ratio: 1;
+    height: 1.5rem;
+    position: absolute;
+    right: 0;
+    float: right;
+    margin: .5rem;
+    animation: x-close 200ms ease forwards;
+
+    .cls-1 {
+        fill: #000;
+    }
+}
+
+.profile.active {
+    min-width: 20rem;
+    min-height: 35rem;
+    background-color: darken($background, 8%);
+    box-shadow: .1rem .2rem .2rem #00000044;
+
+    .container {
+        flex-direction: column-reverse;
+        justify-content: center;
+        border-radius: 0;
+        min-width: 20rem;
+        background-color: lighten($background, 8%);
+        float: left;
+    }
+
+    img,
+    h3 {
+        margin: .2rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .x {
+        animation: x-open 200ms ease forwards;
+    }
+}
+
+@keyframes x-close {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes x-open {
+    0% {
+        display: show;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.logo {
+    height: 2rem;
+    aspect-ratio: 1;
+    animation: grad-flow 8s ease infinite;
+    background: linear-gradient(45deg,
+            $gold-stage1,
+            $gold-stage2,
+            $gold-stage3,
+            $gold-stage4,
+        );
+    background-size: 200% 200%;
+    border-radius: .2rem;
+    padding: .2rem;
+    margin-top: 25rem;
+    margin-right: -.5rem;
+
+    .cls-1 {
+        fill: $background;
+    }
+}
+
+@keyframes grad-flow {
+    0% {
+        background-position: 0% 20%;
+    }
+
+    50% {
+        background-position: 20% 70%;
+    }
+
+    100% {
+        background-position: 0% 20%;
+    }
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: calc(50vh + 3rem);
+    background-color: $base3;
+    z-index: 2;
+
+    .content {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .spacer {
+        background-color: $background;
+        height: 50vh;
+        width: 100vw;
+    }
+
+    p {
+        margin: auto;
+        margin-bottom: .33rem;
+        margin-left: 1rem;
+        margin-right: .2rem;
+        font-size: .9rem;
+        line-height: .9rem;
+        white-space: nowrap;
+        color: #fff;
+    }
+
+    .LSX-Studio-logo {
+        margin: 0;
+        height: 1.8rem;
+        fill: #fff;
+        transition: 500ms;
+    }
+
+    .LSX-Studio-logo:hover {
+        fill: $base1;
+        transform: scale(1.03);
+    }
+
+    span {
+        font-size: .7rem;
+    }
+}

@@ -1,0 +1,40 @@
+$gold-stage1: #F0D750;
+$gold-stage2: #E7CD3B;
+$gold-stage3: #D9AD15;
+$gold-stage4: #FCE186;
+
+$silver-stage1: #D7D8D8;
+$silver-stage2: #B1B1B1;
+$silver-stage3: #E7E7E7;
+$silver-stage4: #B9B9B9;
+
+$background: #D2E5CB;
+$base1: #66C18C;
+$base2: #327D52;
+$base3: #104239;
+$base4: #0D140F;
+
+$accent: #0da100;
+
+$dark-base1: #66C18C;
+$dark-base2: #1D5133;
+$dark-base3: #104239;
+$dark-base4: #D2E5CB;
+$dark-background: #0D140F;
+
+$dark-theme: false !default;
+
+@if $dark-theme {
+    $background: $dark-background;
+    $base1: $dark-base1;
+    $base2: $dark-base2;
+    $base3: $dark-base3;
+    $base4: $dark-base4
+}
+
+@if $dark-theme == false {
+    $gold-stage1: darken($gold-stage1, 8%);
+    $gold-stage2: darken($gold-stage2, 8%);
+    $gold-stage3: darken($gold-stage3, 3%);
+    $gold-stage4: darken($gold-stage4, 8%);
+}
