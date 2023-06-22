@@ -15,6 +15,10 @@ $base3: #104239;
 $base4: #0D140F;
 
 $accent: #0da100;
+$accent2: #38938D;
+$alert: #ff4a54;
+$default: #000;
+$default-reverse: #fff;
 
 $dark-base1: #66C18C;
 $dark-base2: #1D5133;
@@ -22,17 +26,19 @@ $dark-base3: #104239;
 $dark-base4: #D2E5CB;
 $dark-background: #0D140F;
 
-$dark-theme: false !default;
+$dark-theme: false;
 
-@if $dark-theme {
+@if ($dark-theme) {
     $background: $dark-background;
     $base1: $dark-base1;
     $base2: $dark-base2;
     $base3: $dark-base3;
-    $base4: $dark-base4
+    $base4: $dark-base4;
+    $default: #fff;
+    $default-reverse: #000;
 }
 
-@if $dark-theme == false {
+@if $dark-theme==false {
     $gold-stage1: darken($gold-stage1, 8%);
     $gold-stage2: darken($gold-stage2, 8%);
     $gold-stage3: darken($gold-stage3, 3%);

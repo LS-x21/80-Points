@@ -25,19 +25,22 @@
     display: none;
 }
 
+:root {
+    --size: 105%;
+}
+
 html {
-    font-size: 100%;
+    font-size: var(--size);
     overflow-x: hidden;
+    white-space: nowrap;
 }
 
 body {
     background-color: $background;
-    user-select: none; // chrome and Opera
-    -moz-user-select: none; // Firefox
-    -webkit-text-select: none; // IOS Safari
-    -webkit-user-select: none; // Safari
-    perspective: 1rem;
-    transform-style: preserve-3d;
+    user-select: none;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
 }
 
 h1 {
@@ -58,16 +61,19 @@ h6 {
 h3 {
     font-size: 3.3rem;
     font-weight: 800;
+    color: $default;
 }
 
 h4 {
     font-size: 1.7rem;
     font-weight: 500;
+    color: $default;
 }
 
 p {
     font-family: 'Raleway';
     font-weight: 200;
+    color: $default;
 }
 
 .main {
@@ -75,6 +81,14 @@ p {
     height: 100vh;
     position: sticky;
     top: 0;
+    margin: 0;
+
+    .title {
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+        height: fit-content;
+        width: 12rem;
+    }
 
     .container {
         position: relative;
@@ -91,6 +105,10 @@ p {
         }
     }
 
+    .spacer {
+        width: 12rem
+    }
+
     .content {
         padding: 2rem;
         width: max-content;
@@ -99,6 +117,10 @@ p {
             color: $base3;
             margin: 0;
             letter-spacing: 1rem;
+
+            @if($dark-theme) {
+                color: $base4;
+            }
         }
 
         h4 {
@@ -156,6 +178,7 @@ p {
 
         button:hover,
         button:focus {
+            cursor: pointer;
             transform: scale(1.08);
             border-color: $gold-stage2;
             border-width: .15rem;
@@ -180,14 +203,6 @@ p {
     }
 }
 
-.title {
-    writing-mode: vertical-lr;
-    text-orientation: upright;
-    height: fit-content;
-    width: fit-content;
-
-}
-
 .scroll-indicator-container {
     display: flex;
     flex-direction: row;
@@ -197,7 +212,6 @@ p {
     margin: .75rem;
     margin-bottom: 4rem;
     margin-left: auto;
-
 
     .scroll-indicator-wrapper {
         width: fit-content;
@@ -247,6 +261,16 @@ div#scroll-indicator-credit {
     background-color: $base3;
 }
 
+@if ($dark-theme) {
+    p#scroll-indicator-credit {
+        color: $base4;
+    }
+
+    div#scroll-indicator-credit {
+        background-color: $base4;
+    }
+}
+
 .profile {
     position: fixed;
     top: 0;
@@ -259,25 +283,33 @@ div#scroll-indicator-credit {
     margin: 2rem;
     transition: 500ms;
     transition-delay: 150ms;
+    border-radius: .2rem;
+    padding: 0;
+    flex-direction: row;
 
-    .container {
+    .header {
+        all: unset;
         width: fit-content;
         min-width: 0rem;
         height: fit-content;
         display: flex;
         float: right;
-        background-color: none;
+        background-color: transparent;
         padding: .4rem .8rem;
-        border-radius: .5rem;
-        transition: 500ms;
-    }
-
-    div:hover {
-        transform: scale(1.01);
+        border-radius: .2rem;
+        transition: 550ms;
         background-color: lighten($background, 8%);
     }
 
+    .header:hover,
+    .header:focus {
+        transform: scale(1.01);
+        cursor: pointer;
+    }
+
     h3 {
+        transition: 500ms;
+        font-weight: 700;
         margin-top: auto;
         margin-bottom: .1rem;
         margin-right: 1rem;
@@ -287,89 +319,494 @@ div#scroll-indicator-credit {
     }
 
     img {
+        transition: 500ms;
         min-width: 20px;
-        width: 2vw;
+        width: 2rem;
         min-height: 20px;
-        height: 2vw;
+        height: 2rem;
         padding: .3rem;
-        border-radius: .3rem;
+        border-radius: .2rem;
         background-color: $base1;
+    }
+
+    .content {
+        margin: auto;
+        opacity: 0;
+        transition: 50ms;
+        transition-delay: 0ms;
+
+        div {
+            flex-grow: 1;
+            padding: .5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .element {
+            margin: .5rem;
+            border-radius: .2rem;
+            transition: all 400ms, background-color 200ms;
+            padding: .8rem 1rem;
+            contain: paint;
+        }
+
+        .element::before {
+            content: '';
+            position: absolute;
+            background-color: lighten($background, 4%);
+            inset: 0;
+            z-index: -1;
+            transition: 300ms;
+        }
+
+        .element:hover::before {
+            cursor: pointer;
+            background-color: lighten($base2, 40%);
+
+            @if($dark-theme) {
+                background-color: darken($base2, 10%);
+            }
+
+            transform: scale(1.05);
+        }
+
+        .element:hover .short-arrow {
+            opacity: 1;
+            right: .6rem;
+        }
+
+        .account {
+            pointer-events: none;
+        }
+
+        h3 {
+            position: relative;
+            font-size: 1rem;
+            font-family: 'Cinzel';
+            margin-bottom: .2rem;
+            display: flex;
+            flex-direction: row;
+            transform-origin: left;
+            transition: 300ms;
+        }
+
+        h4 {
+            font-family: 'Raleway';
+            margin: .1rem;
+            margin-top: auto;
+            font-size: .8rem;
+            font-weight: 600;
+            transition: 300ms;
+        }
+
+        p {
+            margin: .1rem;
+            font-size: .8rem;
+            font-weight: 400;
+            transform-origin: left;
+            transition: 300ms;
+        }
+
+        .center h3 {
+            line-height: 1rem;
+            margin: 0;
+        }
+
+        .visuals {
+            .zoom div {
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+
+                button {
+                    all: unset;
+                    font-family: "Raleway";
+                    font-size: .75rem;
+                    margin-left: auto;
+                    transition: 200ms;
+                    color: $default;
+                }
+
+                button:hover,
+                button:focus {
+                    cursor: pointer;
+                    color: $accent;
+                    font-weight: 600;
+                }
+            }
+
+            input {
+                all: unset;
+                width: auto;
+                height: .5rem;
+                border-radius: .25rem;
+                background-color: $base1;
+                outline: none;
+                border: none;
+                opacity: .6;
+                transition: 200ms;
+                margin-top: .4rem;
+                margin-bottom: .4rem;
+            }
+
+            input:hover,
+            input:focus {
+                cursor: pointer;
+                opacity: 1;
+            }
+
+            input::-webkit-slider-thumb {
+                appearance: none;
+                aspect-ratio: 1;
+                width: .8rem;
+                border-radius: 50%;
+                background: $base4;
+                cursor: pointer;
+            }
+
+            input::-moz-range-thumb {
+                appearance: none;
+                aspect-ratio: 1;
+                width: .8rem;
+                border-radius: 50%;
+                background: $base4;
+                cursor: pointer;
+            }
+
+
+            p {
+                font-weight: 700;
+            }
+
+            .theme {
+                display: flex;
+                flex-direction: row;
+
+                //switch variables
+                $width: 2.5rem;
+                $height: 1.25rem;
+                $margin: .1rem;
+
+                label {
+                    margin-left: auto;
+                    height: $height;
+                    width: $width;
+                    border-radius: calc($height/2);
+                    contain: paint;
+                    transition: 200ms;
+                }
+
+                label:hover,
+                label:focus {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                }
+
+                span {
+                    position: absolute;
+                    inset: 0;
+                    background-color: #fff;
+                    transition: 200ms;
+                    padding: 0;
+                }
+
+                span::before {
+                    content: '';
+                    position: absolute;
+                    aspect-ratio: 1;
+                    height: calc($height - ($margin * 2));
+                    border-radius: 50%;
+                    left: $margin;
+                    top: $margin;
+                    background-color: #000;
+                    transition: 200ms;
+                }
+
+                input:checked+span {
+                    background-color: #000;
+                }
+
+                input:checked+span::before {
+                    left: calc($width - ($height - ($margin * 2)) - $margin);
+                    background-color: #fff;
+                }
+            }
+
+            .language {
+                display: flex;
+                flex-direction: row;
+
+                select {
+                    width: 10rem;
+                    height: 1.2rem;
+                    margin-left: auto;
+                    font-size: .8rem;
+                    font-family: "Raleway";
+                    border: none;
+                    border-radius: .2rem;
+                    transition: 300ms;
+
+                    option {
+                        border-radius: .1rem;
+                    }
+
+                    option:hover {
+                        background-color: $base1;
+                    }
+                }
+            }
+        }
+
+        .joined {
+            font-size: .8rem;
+        }
+
+        .stats {
+            flex-direction: row;
+            padding: .5rem;
+            pointer-events: none;
+        }
+
+        .short-arrow {
+            fill: $base4;
+            opacity: 0;
+            height: 1.8rem;
+            position: absolute;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            transition: 500ms;
+        }
+
+        .friends {
+            height: fit-content;
+            max-height: 10rem;
+            overflow: hidden;
+            padding-left: 0;
+
+            h3 {
+                margin-left: 1rem;
+            }
+
+
+            button {
+                all: unset;
+                font-family: 'Raleway';
+                font-size: .8rem;
+                color: $default;
+            }
+
+            .dropdown {
+                display: flex;
+                flex-direction: row;
+                transform-origin: left;
+                transition: 200ms;
+
+                svg {
+                    fill: $default;
+                    transform: rotate(180deg);
+                    height: 1rem;
+                    margin-right: .6rem;
+                    transition: 200ms;
+                }
+            }
+
+            .dropdown:hover,
+            .dropdown:focus {
+                cursor: pointer;
+
+                svg {
+                    color: $accent;
+                }
+
+                button {
+                    color: $accent;
+                }
+            }
+
+            .dropdown.show {
+                color: $accent;
+
+                svg {
+                    transform: rotate(270deg);
+                }
+            }
+
+            .friends-content {
+                // height: 0rem;
+                display: none;
+                transition: 300ms;
+
+                p {
+                    margin: .2rem;
+                }
+            }
+
+            .friends-content.show {
+                display: block;
+                height: 8rem;
+                padding: .2rem;
+                border-radius: .2rem;
+                overflow-y: scroll;
+            }
+
+            .friends-content.show::-webkit-scrollbar {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: .2rem;
+            }
+
+            .friends-content.show::-webkit-scrollbar-track {
+                //!edit for dark mode
+                background-color: #aaa;
+                border-radius: .1rem;
+            }
+
+            .friends-content.show::-webkit-scrollbar-thumb {
+                //!edit for dark mode
+                background-color: #ddd;
+                width: .2rem;
+                border-radius: .1rem;
+            }
+
+            .expand {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: 200ms;
+                font-size: .65rem;
+                opacity: .7;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .expand:hover,
+            .expand:focus {
+                opacity: 1;
+                text-decoration: underline;
+            }
+
+            #online,
+            #offline {
+                margin: 0;
+                padding: 0;
+                margin-left: 1rem;
+            }
+        }
+
+        .signout {
+            padding: .2rem;
+
+            h3 {
+                padding: .2rem;
+                margin: auto;
+            }
+        }
+
+        .signout:hover::before,
+        .signout:focus::before {
+            color: $default;
+            background-color: lighten(#ff4a54, 10%);
+
+            @if ($dark-theme) {
+                background-color: darken(#ff4a54, 5%);
+            }
+
+            filter: saturate(.8);
+            cursor: pointer;
+        }
+    }
+
+    .content>div {
+        opacity: inherit;
     }
 }
 
 .x {
+    all: unset;
     aspect-ratio: 1;
     height: 1.5rem;
     position: absolute;
     right: 0;
     float: right;
     margin: .5rem;
-    animation: x-close 200ms ease forwards;
+    transition: 400ms;
 
     .cls-1 {
-        fill: #000;
+        fill: $base4;
+    }
+}
+
+.x:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+
+    .cls-1 {
+        fill: lighten($base4, 20%);
     }
 }
 
 .profile.active {
     min-width: 20rem;
-    min-height: 35rem;
+    min-height: fit-content;
     background-color: darken($background, 8%);
     box-shadow: .1rem .2rem .2rem #00000044;
 
-    .container {
+    .header {
         flex-direction: column-reverse;
         justify-content: center;
-        border-radius: 0;
         min-width: 20rem;
         background-color: lighten($background, 8%);
-        float: left;
+        border-radius: .2rem .2rem 0 0;
+        margin-bottom: .5rem;
+
+        img,
+        h3 {
+            margin: .2rem;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+        }
     }
 
-    img,
-    h3 {
-        margin: .2rem;
-        margin-right: auto;
-        margin-left: auto;
-    }
+    .content {
+        $content-transition-delay: 88ms;
 
-    .x {
-        animation: x-open 200ms ease forwards;
-    }
-}
+        div:nth-child(1) {
+            transition-delay: 1 * $content-transition-delay ;
+        }
 
-@keyframes x-close {
-    0% {
-        opacity: 1;
-    }
+        div:nth-child(2) {
+            transition-delay: 2 * $content-transition-delay;
+        }
 
-    100% {
-        opacity: 0;
-        display: none;
-    }
-}
+        div:nth-child(3) {
+            transition-delay: 3 * $content-transition-delay;
+        }
 
-@keyframes x-open {
-    0% {
-        display: show;
-        opacity: 0;
-    }
+        div:nth-child(4) {
+            transition-delay: 4 * $content-transition-delay;
+        }
 
-    100% {
-        opacity: 1;
+        div:nth-child(5) {
+            transition-delay: 5 * $content-transition-delay;
+        }
+
+        div:nth-child(6) {
+            transition-delay: 6 * $content-transition-delay;
+        }
     }
 }
 
 .logo {
     height: 2rem;
     aspect-ratio: 1;
-    animation: grad-flow 8s ease infinite;
-    background: linear-gradient(45deg,
-            $gold-stage1,
-            $gold-stage2,
-            $gold-stage3,
-            $gold-stage4,
-        );
+    background: #9e1e1e;
     background-size: 200% 200%;
     border-radius: .2rem;
     padding: .2rem;
@@ -381,19 +818,19 @@ div#scroll-indicator-credit {
     }
 }
 
-@keyframes grad-flow {
-    0% {
-        background-position: 0% 20%;
-    }
+// @keyframes grad-flow {
+//     0% {
+//         background-position: 0% 20%;
+//     }
 
-    50% {
-        background-position: 20% 70%;
-    }
+//     50% {
+//         background-position: 20% 70%;
+//     }
 
-    100% {
-        background-position: 0% 20%;
-    }
-}
+//     100% {
+//         background-position: 0% 20%;
+//     }
+// }
 
 .footer {
     display: flex;
@@ -401,12 +838,13 @@ div#scroll-indicator-credit {
     width: 100vw;
     height: calc(50vh + 3rem);
     background-color: $base3;
-    z-index: 2;
+    margin: 0;
 
     .content {
         position: relative;
         display: flex;
         flex-direction: row;
+        margin: auto;
         margin-top: auto;
         margin-bottom: auto;
     }
@@ -419,10 +857,10 @@ div#scroll-indicator-credit {
 
     p {
         margin: auto;
-        margin-bottom: .33rem;
+        margin-bottom: .21rem;
         margin-left: 1rem;
         margin-right: .2rem;
-        font-size: .9rem;
+        font-size: .8rem;
         line-height: .9rem;
         white-space: nowrap;
         color: #fff;
@@ -430,17 +868,33 @@ div#scroll-indicator-credit {
 
     .LSX-Studio-logo {
         margin: 0;
-        height: 1.8rem;
+        height: 1.6rem;
         fill: #fff;
-        transition: 500ms;
-    }
-
-    .LSX-Studio-logo:hover {
-        fill: $base1;
-        transform: scale(1.03);
+        transition: 300ms;
     }
 
     span {
-        font-size: .7rem;
+        display: flex;
+        flex-direction: row;
+
+        p {
+            color: #fff;
+            margin-left: .1rem;
+            transition: 300ms;
+        }
+    }
+
+    span:hover,
+    span:focus {
+        cursor: pointer;
+        transform: scale(1.03);
+
+        svg {
+            fill: $base1;
+        }
+
+        p {
+            color: $base1;
+        }
     }
 }

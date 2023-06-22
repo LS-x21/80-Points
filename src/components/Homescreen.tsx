@@ -3,7 +3,7 @@ import "../scss/homescreen.scss";
 import Logo from "../images/Logo";
 import Footer from "./Footer";
 import ShortArrow from "../images/ShortArrow";
-import UserProfile from "./UserProfile";
+import Settings from "./Settings";
 
 function Homescreen() {
     const [indicatorHeight, setIndicatorHeight] = useState(0);
@@ -18,7 +18,7 @@ function Homescreen() {
     });
     return (
         <>
-            <UserProfile />
+            <Settings />
             <div className="main">
                 <div className="container">
                     <div className="title">
@@ -33,14 +33,14 @@ function Homescreen() {
                             A Traditional Chinese Card Game
                         </h4>
                         <div>
-                            <button className="enter">
+                            <button className="enter" tabIndex={1}>
                                 <ShortArrow className="short-arrow-rev" />
                                 <p>
                                     Enter
                                 </p>
                                 <ShortArrow className="short-arrow" />
                             </button>
-                            <button className="create">
+                            <button className="create" tabIndex={2}>
                                 <ShortArrow className="short-arrow-rev" />
                                 <p>
                                     Create
@@ -49,6 +49,7 @@ function Homescreen() {
                             </button>
                         </div>
                     </div>
+                    <div className="spacer" />
                 </div>
                 <div className="scroll-indicator-container">
                     <div className="scroll-indicator-wrapper">

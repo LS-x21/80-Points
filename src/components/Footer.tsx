@@ -1,15 +1,25 @@
-import LSX_STUDIO_LOGO from "../images/LSX_STUDIO_LOGO";
+import LsxStudioLogo from "../images/LsxStudioLogo";
 import "../scss/homescreen.scss";
 
 const Footer = () => {
+    const aboutPage = () => {
+
+    }
+
     return (
         <div className="footer">
             <div className="spacer" />
             <div className="content">
                 <p>
-                    Created by:
+                    copyright &copy;2023 80 Points |
+                    created & designed by
                 </p>
-                <LSX_STUDIO_LOGO className="LSX-Studio-logo" />
+                <span onClick={aboutPage}>
+                    <LsxStudioLogo className="LSX-Studio-logo" />
+                    <p>
+                        + others
+                    </p>
+                </span>
             </div>
         </div>
     )
