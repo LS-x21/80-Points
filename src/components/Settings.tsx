@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AccountSettings from "./AccountSettings";
 import FriendsSetings from "./FriendsSetings";
 import ShortArrow from "../images/ShortArrow";
@@ -18,35 +18,43 @@ const UserProfile = () => {
     const [xOpacity, setXOpacity] = useState(0);
     const [contentOpacity, setContentOpacity] = useState(0);
 
-    useEffect(() => {
-        const headerElement = document.getElementById("header");
+    const showProfile = () => {
+        setVisibility(true);
+        setXDisplay("flex");
+        setContentDisplay("block");
+        setTimeout(() => {
+            setXOpacity(1);
+            setContentOpacity(1);
+        }, .1);
+    }
 
-        headerElement?.addEventListener("click", () => {
-            setVisibility(true);
-            setXDisplay("flex");
-            setContentDisplay("block");
-            setTimeout(() => {
-                setXOpacity(1);
-                setContentOpacity(1);
-            }, .1);
-        })
+    const closeProfile = () => {
+        setVisibility(false);
+        setXOpacity(0);
+        setContentOpacity(0);
+        setTimeout(() => {
+            setContentDisplay("none");
+            setXDisplay("none");
+        }, 500);
+    }
 
-        const xElement = document.getElementById("x");
-        xElement?.addEventListener("click", () => {
-            setVisibility(false);
-            setXOpacity(0);
-            setContentOpacity(0);
-            setTimeout(() => {
-                setContentDisplay("none");
-                setXDisplay("none");
-            }, 500);
-        })
-    })
+    const openMoreSettingsModal = () => {
+
+    }
+
+    const closeModeSettingsModal = () => {
+
+    }
 
     return (
         <>
-            <div id="profile" className={`profile ${visibility ? "active" : "inactive"}`} tabIndex={3}>
-                <button id="header" className="header">
+            <div id="profile" className={`profile ${visibility ? "active" : "inactive"}`} >
+                <button
+                    id="header"
+                    className="header"
+                    tabIndex={3}
+                    onClick={showProfile}
+                >
                     <h3>{USERNAME}</h3>
                     <img src={require("./../images/logo.png")} alt="profile" />
                 </button>
@@ -55,6 +63,7 @@ const UserProfile = () => {
                     style={{ display: xDisplay }}
                     className={`x ${visibility ? "active" : "inactive"}`}
                     tabIndex={4}
+                    onClick={closeProfile}
                 >
                     <X className="x" opacity={xOpacity} display={xDisplay} />
                 </button>

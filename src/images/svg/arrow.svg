@@ -2,7 +2,7 @@
 <svg id="Layer_1"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140">
     <defs>
-        <style>.cls-1{fill:red;}</style>
+        <style>.cls-1{fill:#000;}</style>
     </defs>
     <path class="cls-1" d="m88.37,89.76l7.22,1.97-5.47-.55c-.55-.66-5.69-1.64-1.75-1.42Z"/>
     <path class="cls-1" d="m108.17,81.99l.98.33-6.12,1.53c1.42-.55,3.17-1.2,5.14-1.86Z"/>

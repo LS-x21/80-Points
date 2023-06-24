@@ -2,7 +2,7 @@
 <svg id="Layer_1"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 220">
     <defs>
-        <style>.cls-1{fill:#ff2020;}</style>
+        <style>.cls-1{fill:#000;}</style>
     </defs>
     <path class="cls-1" d="m75.33,195.87c1.02.58,1.26-.99,1.46-2.35l-2.7.27,1.23,2.08Z"/>
     <path class="cls-1" d="m73.46,190.72l-3.58-1.23,2.04,1.17c-.17,2.55-2.59,1.01-3.4.5,2.22,2.89,3.36-.27,4.94-.44Z"/>

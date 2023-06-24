@@ -9,13 +9,18 @@ function Homescreen() {
     const [indicatorHeight, setIndicatorHeight] = useState(0);
     const scrollHeight = 8;
     const scrollHeightLimit = 7;
+
+    const scrollTracker = () => {
+        const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const currentScroll = window.scrollY;
+        setIndicatorHeight((Math.ceil(currentScroll / totalScrollHeight * 1000) / 100 - .01) * (scrollHeight / 10));
+    }
     useEffect(() => {
-        window.addEventListener("scroll", () => {
-            const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const currentScroll = window.scrollY;
-            setIndicatorHeight((Math.ceil(currentScroll / totalScrollHeight * 1000) / 100 - .01) * (scrollHeight / 10));
+        window.addEventListener("scroll", scrollTracker);
+        return (()=>{
+            window.removeEventListener("scroll", scrollTracker);
         })
-    });
+    }, []);
     return (
         <>
             <Settings />

@@ -2,13 +2,10 @@ import { useState } from "react"
 
 const VisualSettings = () => {
     const [size, setSize] = useState("1");
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
 
-    document.documentElement.style.setProperty('--size', Math.ceil(Number(size) * 100 + 5) + "%");
-    // document.documentElement.style.setProperty('--size', Math.ceil(Number(size) * 100 + 5) + "%");
-    const modeState = getComputedStyle(document.documentElement).getPropertyValue('--theme');
+    document.documentElement.style.setProperty('--size', Math.ceil(Number(size) * 100 + 15) + "%");
 
-    console.log(modeState);
     return (
         <div className="element visuals" >
             <h3>Visuals</h3>
@@ -41,7 +38,7 @@ const VisualSettings = () => {
             </div>
             <div className="language">
                 <p>Language</p>
-                <select>
+                <select tabIndex={7}>
                     <option value="english">English</option>
                     <option value="chinese-s">Chinese (Simplified)</option>
                     <option value="chinese-t">Chinese (Traditional)</option>

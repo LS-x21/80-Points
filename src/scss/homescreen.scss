@@ -169,7 +169,7 @@ p {
 
         p {
             font-family: 'Gideon Roman';
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
             margin: 0;
             margin-top: auto;
@@ -394,14 +394,14 @@ div#scroll-indicator-credit {
             font-family: 'Raleway';
             margin: .1rem;
             margin-top: auto;
-            font-size: .8rem;
+            font-size: 1rem;
             font-weight: 600;
             transition: 300ms;
         }
 
         p {
             margin: .1rem;
-            font-size: .8rem;
+            font-size: .7rem;
             font-weight: 400;
             transform-origin: left;
             transition: 300ms;
@@ -410,6 +410,74 @@ div#scroll-indicator-credit {
         .center h3 {
             line-height: 1rem;
             margin: 0;
+        }
+
+        .stats {
+            flex-direction: row;
+            pointer-events: none;
+            padding: 0;
+
+            h4,
+            p {
+                text-align: center;
+            }
+
+            div {
+                display: flex;
+                flex: 1;
+                background-color: lighten($background, 4%);
+                margin-left: .2rem;
+                margin-right: .2rem;
+                border-radius: .2rem;
+                ;
+            }
+
+            div:first-child {
+                margin-left: 0;
+            }
+
+            div:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .stats::before {
+            content: none;
+        }
+
+        .account {
+
+            .heading {
+                display: flex;
+                flex-direction: row;
+            }
+
+            button {
+                all: unset;
+                transition: 200ms;
+                pointer-events: all;
+
+                svg {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    height: 2rem;
+                    aspect-ratio: 1;
+                    fill: $default;
+                    transition: 200ms;
+                }
+            }
+
+            button:hover svg {
+                transform: scale(1.2);
+                fill: $accent;
+            }
+
+            p {
+                text-align: left;
+            }
+
+
         }
 
         .visuals {
@@ -472,7 +540,6 @@ div#scroll-indicator-credit {
                 background: $base4;
                 cursor: pointer;
             }
-
 
             p {
                 font-weight: 700;
@@ -561,12 +628,6 @@ div#scroll-indicator-credit {
             font-size: .8rem;
         }
 
-        .stats {
-            flex-direction: row;
-            padding: .5rem;
-            pointer-events: none;
-        }
-
         .short-arrow {
             fill: $base4;
             opacity: 0;
@@ -580,14 +641,12 @@ div#scroll-indicator-credit {
 
         .friends {
             height: fit-content;
-            max-height: 10rem;
             overflow: hidden;
             padding-left: 0;
 
             h3 {
                 margin-left: 1rem;
             }
-
 
             button {
                 all: unset;
@@ -596,18 +655,41 @@ div#scroll-indicator-credit {
                 color: $default;
             }
 
+            .heading {
+                display: flex;
+                flex-direction: row;
+
+                button {
+                    all: unset;
+                }
+
+                .plus {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    fill: $default;
+                    height: 1.6rem;
+                    aspect-ratio: 1;
+                    transition: 200ms;
+                }
+
+                button:hover svg {
+                    transform: scale(1.2);
+                    fill: $accent;
+                }
+            }
+
             .dropdown {
                 display: flex;
                 flex-direction: row;
                 transform-origin: left;
-                transition: 200ms;
+                transition: 100ms;
 
                 svg {
                     fill: $default;
                     transform: rotate(180deg);
                     height: 1rem;
                     margin-right: .6rem;
-                    transition: 200ms;
                 }
             }
 
@@ -633,21 +715,22 @@ div#scroll-indicator-credit {
             }
 
             .friends-content {
-                // height: 0rem;
-                display: none;
-                transition: 300ms;
+                max-height: 0rem;
+                overflow-y: hidden;
+                transition: 400ms;
 
                 p {
                     margin: .2rem;
+                    height: fit-content
                 }
             }
 
             .friends-content.show {
-                display: block;
-                height: 8rem;
+                height: fit-content;
+                max-height: 10rem;
                 padding: .2rem;
                 border-radius: .2rem;
-                overflow-y: scroll;
+                overflow-y: auto;
             }
 
             .friends-content.show::-webkit-scrollbar {
@@ -655,21 +738,26 @@ div#scroll-indicator-credit {
                 position: absolute;
                 right: 0;
                 top: 0;
-                width: .2rem;
+                width: .4rem;
             }
 
             .friends-content.show::-webkit-scrollbar-track {
                 //!edit for dark mode
-                background-color: #aaa;
-                border-radius: .1rem;
+                background-color: #888;
+                border-radius: .2rem;
             }
 
             .friends-content.show::-webkit-scrollbar-thumb {
                 //!edit for dark mode
                 background-color: #ddd;
-                width: .2rem;
-                border-radius: .1rem;
+                width: .4rem;
+                border-radius: .2rem;
             }
+
+            .friends-content.show::-webkit-scrollbar-thumb:hover {
+                background-color: #fff;
+            }
+
 
             .expand {
                 position: relative;

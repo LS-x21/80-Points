@@ -27,20 +27,3 @@ $dark-base4: #D2E5CB;
 $dark-background: #0D140F;
 
 $dark-theme: false;
-
-@if ($dark-theme) {
-    $background: $dark-background;
-    $base1: $dark-base1;
-    $base2: $dark-base2;
-    $base3: $dark-base3;
-    $base4: $dark-base4;
-    $default: #fff;
-    $default-reverse: #000;
-}
-
-@if $dark-theme==false {
-    $gold-stage1: darken($gold-stage1, 8%);
-    $gold-stage2: darken($gold-stage2, 8%);
-    $gold-stage3: darken($gold-stage3, 3%);
-    $gold-stage4: darken($gold-stage4, 8%);
-}

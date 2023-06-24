@@ -1,8 +1,11 @@
 import Homescreen from './components/Homescreen';
+import "./scss/palette.scss";
 
 function App() {
   return (
-    <Homescreen />
+    <div className='dark-mode-overide'>
+      <Homescreen />
+    </div>
   );
 }
 

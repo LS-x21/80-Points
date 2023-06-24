@@ -6,26 +6,22 @@ const UserStats = () => {
     return (
         <div className="element stats">
             <div>
-                <h4>
-                    Level
-                </h4>
-                <p>{LEVEL}</p>
+                <p>
+                    Experience
+                </p>
+                <h4>{LEVEL}</h4>
             </div>
             <div>
-                <h4>
-                    Games
-                    <br />
-                    Played
-                </h4>
-                <p>{GAMES_PLAYED}</p>
+                <p>
+                    Games Played
+                </p>
+                <h4>{GAMES_PLAYED}</h4>
             </div>
             <div>
-                <h4>
-                    Time
-                    <br />
-                    Playing
-                </h4>
-                <p>{TIME_PLAYED}</p>
+                <p>
+                    Time Playing
+                </p>
+                <h4>{TIME_PLAYED}</h4>
             </div>
         </div>
     )
