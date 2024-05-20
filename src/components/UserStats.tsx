@@ -2,9 +2,13 @@ const LEVEL = 888;
 const GAMES_PLAYED = 888;
 const TIME_PLAYED = "8 Days";
 
-const UserStats = () => {
+interface Props {
+    display: string;
+}
+
+const UserStats = ({ display }: Props) => {
     return (
-        <div className="element stats">
+        <section className="stats" style={{ display: display }}>
             <div>
                 <p>
                     Experience
@@ -23,7 +27,7 @@ const UserStats = () => {
                 </p>
                 <h4>{TIME_PLAYED}</h4>
             </div>
-        </div>
+        </section>
     )
 }
 

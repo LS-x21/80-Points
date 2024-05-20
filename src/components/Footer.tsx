@@ -7,9 +7,9 @@ const Footer = () => {
     }
 
     return (
-        <div className="footer">
-            <div className="spacer" />
-            <div className="content">
+        <footer>
+            <aside />
+            <section>
                 <p>
                     copyright &copy;2023 80 Points |
                     created & designed by
@@ -20,8 +20,8 @@ const Footer = () => {
                         + others
                     </p>
                 </span>
-            </div>
-        </div>
+            </section>
+        </footer>
     )
 }
 

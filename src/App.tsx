@@ -3,9 +3,7 @@ import "./scss/palette.scss";
 
 function App() {
   return (
-    <div className='dark-mode-overide'>
-      <Homescreen />
-    </div>
+    <Homescreen />
   );
 }
 

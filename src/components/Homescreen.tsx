@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../scss/homescreen.scss";
 import Logo from "../images/Logo";
 import Footer from "./Footer";
 import ShortArrow from "../images/ShortArrow";
-import Settings from "./Settings";
+import { Settings } from "./Settings";
+import HamburgerMenu from "../images/HamburgerMenu";
+import { getMoreSettingModalDisplayState } from "./Settings";
 
 function Homescreen() {
     const [indicatorHeight, setIndicatorHeight] = useState(0);
+
     const scrollHeight = 8;
     const scrollHeightLimit = 7;
 
@@ -15,28 +18,37 @@ function Homescreen() {
         const currentScroll = window.scrollY;
         setIndicatorHeight((Math.ceil(currentScroll / totalScrollHeight * 1000) / 100 - .01) * (scrollHeight / 10));
     }
+
     useEffect(() => {
         window.addEventListener("scroll", scrollTracker);
-        return (()=>{
+
+        return (() => {
             window.removeEventListener("scroll", scrollTracker);
         })
-    }, []);
+    });
+
     return (
         <>
-            <Settings />
-            <div className="main">
-                <div className="container">
-                    <div className="title">
+        {/* home screen backgrqound of a cards animations, in a kaleidoscope pattern*/}
+            {/* Setting is the Profile Icon */}
+            {Settings()}
+            <main id="main">
+                <div className="menu">
+                    {/* TODO: this menu is to get information about the game, maybe merge with the current profile logo */}
+                    <HamburgerMenu className="hamburger-menu" />
+                </div>
+                <section>
+                    <aside>
                         <Logo className="logo" />
-                        <h1>八十分</h1>
-                    </div>
+                        <h2>八十分</h2>
+                    </aside>
                     <div className="content">
-                        <h3>
+                        <h1>
                             80 POINTS
-                        </h3>
-                        <h4>
+                        </h1>
+                        <h3>
                             A Traditional Chinese Card Game
-                        </h4>
+                        </h3>
                         <div>
                             <button className="enter" tabIndex={1}>
                                 <ShortArrow className="short-arrow-rev" />
@@ -55,8 +67,8 @@ function Homescreen() {
                         </div>
                     </div>
                     <div className="spacer" />
-                </div>
-                <div className="scroll-indicator-container">
+                </section>
+                <nav className="scroll-indicator-container">
                     <div className="scroll-indicator-wrapper">
                         <div
                             className="scroll-indicator"
@@ -72,9 +84,10 @@ function Homescreen() {
                         </div>
                         <div className="scroll-indicator-background" />
                     </div>
-                </div>
-            </div >
-            <Footer />
+                </nav>
+            </main>
+            {/* TODO: Get this working, not updating, need to make sure that there's no scrolling when the more setting modal is up */}
+            {!getMoreSettingModalDisplayState() ? <Footer /> : <></>}
         </>
     )
 }

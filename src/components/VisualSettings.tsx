@@ -4,30 +4,32 @@ const VisualSettings = () => {
     const [size, setSize] = useState("1");
     const [darkMode, setDarkMode] = useState(true);
 
-    document.documentElement.style.setProperty('--size', Math.ceil(Number(size) * 100 + 15) + "%");
+    document.documentElement.style.setProperty('--size', Math.ceil(Number(size) * 100) + "%");
 
     return (
-        <div className="element visuals" >
+        <section className="visuals" >
             <h3>Visuals</h3>
             <div className="zoom">
                 <div>
                     <p>Zoom - {Math.ceil(Number(size) * 100)}%</p>
                     <button className="default" onClick={() => setSize("1")}>default</button>
                 </div>
-                <input
-                    type="range"
-                    id="zoom"
-                    min={.75}
-                    max={1.3}
-                    step={.01}
-                    value={size}
-                    onChange={(input) => setSize(input.target.value)}
-                    tabIndex={5}
-                />
+                <div>
+                    <input
+                        type="range"
+                        id="zoom"
+                        min={.75}
+                        max={1.25}
+                        step={.01}
+                        value={size}
+                        onChange={(input) => setSize(input.target.value)}
+                        tabIndex={5}
+                    />
+                </div>
             </div>
             <div className="theme">
                 <p>{darkMode ? "Dark" : "Light"} Mode</p>
-                <label>
+                <label className="switch">
                     <input
                         type="checkbox"
                         onChange={() => setDarkMode(!darkMode)}
@@ -44,7 +46,7 @@ const VisualSettings = () => {
                     <option value="chinese-t">Chinese (Traditional)</option>
                 </select>
             </div>
-        </div>
+        </section>
     )
 }
 

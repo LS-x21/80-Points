@@ -1,0 +1,8 @@
+Figure out if the menu button is needed
+    Find new Menu Button Icon is using the Menu Button
+
+Make the profile button appear more as a clickable item 
+
+Find a place to add help for instruction modal
+
+Change the hover color of the elements, looks bad right now
