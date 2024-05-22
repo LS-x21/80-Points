@@ -33,32 +33,42 @@ const MoreSettingsModal = () => {
 	const [xDisplay, setXDisplay] = useState("block");
 	const [xOpacity, setXOpacity] = useState(1);
 
-	let leaderboardNotifications = true;
-	let updates = true;
-
-	let animations = true;
-	let anonymize = false;
-	let explicitLanguageFilter = false;
-
 	const [size, setSize] = useState("1");
 	const [saturation, setSaturation] = useState("1");
 	const [contrast, setContrast] = useState("1");
 	const [grayscale, setGrayscale] = useState("0");
 
+	const [leaderboardNotificationsState, setLeaderboardNotificationsState] = useState(true);
+	const [updateNotificationState, setUpdateNotificationState] = useState(true);
+	const [animationsState, setAnimationsState] = useState(true);
+	const [anonymityState, setAnonymityState] = useState(false);
+	const [explicitLanguageState, setExplicitLanguageState] = useState(true);
+	const [darkmode, setDarkmode] = useState(false);
+
 	const contentElement = document.getElementById("content");
 
 	const closeMoreSettingsModal = () => {
-
+		const moreSettingsModalElement = document.getElementById("more-settings-modal");
+		if (moreSettingsModalElement != null) {
+			moreSettingsModalElement.style.display = "none";
+		}
 	}
 
-	const saveSettings = () => {
+	const getUserStatistics = () => {
+		// get the user data such as the amount of games played
+	}
 
+	const getSettingPreferences = () => {
+		// fetch the data stored int he database
+	}
+
+	const saveSettingsPreferences = () => {
+		// push the saved changes to the database
 	}
 
 	const scrollHandler = () => {
 
 	}
-
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -68,13 +78,15 @@ const MoreSettingsModal = () => {
 			document.documentElement.style.setProperty('--grayscale', grayscale);
 		}, 300);
 
-		contentElement?.addEventListener("scroll", scrollHandler);
-		return (() => contentElement?.removeEventListener("scroll", scrollHandler))
-	})
+		// contentElement?.addEventListener("scroll", scrollHandler);
+		// return (() => contentElement?.removeEventListener("scroll", scrollHandler))
+	}, [])
 
 	return (
 		// TODO: Actually make these buttons do something
-		<div className="more-settings-modal">
+		// TODO: add a scroll animation (rework the go to html tag) when pressed the category on the side
+		// TODO: add scroll indication animation on the section headers on the side when scrolled to the section
+		<div id="more-settings-modal">
 			{/* TODO: Consider changing from a list view to a block view, more visual apealing */}
 			<div className="container">
 				<div className="sections">
@@ -122,8 +134,8 @@ const MoreSettingsModal = () => {
 								<input
 									id="leaderboard-notification"
 									type="checkbox"
-								// value={leaderboardNotifications}
-								// onChange={() => leaderboardNotifications = document.getElementById("leaderboard-notification")}
+									checked={leaderboardNotificationsState}
+									onChange={() => setLeaderboardNotificationsState(!leaderboardNotificationsState)}
 								/>
 								<span />
 							</label>
@@ -136,7 +148,8 @@ const MoreSettingsModal = () => {
 							<label className="switch">
 								<input
 									type="checkbox"
-								// onChange={() => }
+									checked={updateNotificationState}
+									onChange={() => setUpdateNotificationState(!updateNotificationState)}
 								/>
 								<span />
 							</label>
@@ -153,7 +166,22 @@ const MoreSettingsModal = () => {
 							<label className="switch">
 								<input
 									type="checkbox"
-								// onChange={() => }
+									checked={animationsState}
+									onChange={() => setAnimationsState(!animationsState)}
+								/>
+								<span />
+							</label>
+						</div>
+						<div>
+							<div>
+								<p>Explicit Filter</p>
+								<small>censorship of explicit language in chat</small>
+							</div>
+							<label className="switch">
+								<input
+									type="checkbox"
+									checked={explicitLanguageState}
+									onChange={() => setExplicitLanguageState(!explicitLanguageState)}
 								/>
 								<span />
 							</label>
@@ -166,20 +194,8 @@ const MoreSettingsModal = () => {
 							<label className="switch">
 								<input
 									type="checkbox"
-								// onChange={() => }
-								/>
-								<span />
-							</label>
-						</div>
-						<div>
-							<div>
-								<p>Explicit Language Filter</p>
-								<small>censorship of explicit language in chat</small>
-							</div>
-							<label className="switch">
-								<input
-									type="checkbox"
-								// onChange={() => }
+									checked={anonymityState}
+									onChange={() => setAnonymityState(!anonymityState)}
 								/>
 								<span />
 							</label>
@@ -189,7 +205,8 @@ const MoreSettingsModal = () => {
 							<label className="dark-mode-switch switch">
 								<input
 									type="checkbox"
-								// onChange={() => }
+									checked={darkmode}
+									onChange={() => setDarkmode(!darkmode)}
 								/>
 								<span />
 							</label>

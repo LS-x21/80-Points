@@ -18,16 +18,15 @@ const USER_PROFILE = () => {
 }
 
 export function OpenMoreSettingsModal(target: string) {
-    alert(`openning more setting modal and is going to ${target}`)
-}
-
-export function getMoreSettingModalDisplayState() {
-    return moreSettingModalDisplayState;
+    // TODO: add more settings openning animations
+    const moreSettingsModalElement = document.getElementById("more-settings-modal");
+    if (moreSettingsModalElement != null) {
+        moreSettingsModalElement.style.display = "flex";
+    }
 }
 
 export const Settings = () => {
 
-    const [moreSettingDisplay, setMoreSettingDisplay] = useState(false);
 
     const [visibility, setVisibility] = useState(false);
 
@@ -60,17 +59,9 @@ export const Settings = () => {
         }, 500);
     }
 
-    const displayMoreSettingsModal = () => {
-        setMoreSettingDisplay(true);
-    }
-
     const signout = () => {
         alert("you are signed out")
     }
-
-    useEffect(() => {
-        moreSettingModalDisplayState = moreSettingDisplay;
-    }, [])
 
     return (
         <>
@@ -97,8 +88,7 @@ export const Settings = () => {
                     <VisualSettings />
                     <FriendsSetings />
                     <section className="more-settings" onClick={() => {
-                        OpenMoreSettingsModal("default")
-                        displayMoreSettingsModal();
+                        OpenMoreSettingsModal("account");
                     }}>
                         <h3>More Settings</h3>
                         <ShortArrow className="more-settings-short-arrow" />

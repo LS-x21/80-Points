@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import ShortArrow from "../images/ShortArrow";
 import { Settings } from "./Settings";
 import HamburgerMenu from "../images/HamburgerMenu";
-import { getMoreSettingModalDisplayState } from "./Settings";
 
 function Homescreen() {
     const [indicatorHeight, setIndicatorHeight] = useState(0);
@@ -29,7 +28,7 @@ function Homescreen() {
 
     return (
         <>
-        {/* home screen backgrqound of a cards animations, in a kaleidoscope pattern*/}
+            {/* home screen backgrqound of a cards animations, in a kaleidoscope pattern*/}
             {/* Setting is the Profile Icon */}
             {Settings()}
             <main id="main">
@@ -87,7 +86,8 @@ function Homescreen() {
                 </nav>
             </main>
             {/* TODO: Get this working, not updating, need to make sure that there's no scrolling when the more setting modal is up */}
-            {!getMoreSettingModalDisplayState() ? <Footer /> : <></>}
+            {/* {!getMoreSettingModalDisplayState() ? <Footer /> : <></>} */}
+            <Footer />
         </>
     )
 }
